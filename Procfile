@@ -1,1 +1,1 @@
-worker: python app/news_request_forDB.py; web:  gunicorn app/__init__:app
+web:  python -m flask run
