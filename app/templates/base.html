@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{%block title%}{{title}}{%endblock%}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+
+</head>
+<body>
+
+    <nav class="site-header sticky-top py-1" id="top">
+  <div class="container d-flex flex-column flex-md-row justify-content-between">
+    <a class="py-2" href="#" aria-label="Product">
+    </a>
+    <a class="py-2 d-none d-md-inline-block" href="{{url_for('home')}}">Home</a>
+      {%if not current_user.is_anonymous%}
+      <a class="py-2 d-none d-md-inline-block" href="{{url_for('my_news')}}">My news</a>
+      {%endif%}
+
+      {%if current_user.is_anonymous%}
+      <a class="btn btn-sm btn-outline-secondary" href="{{url_for('sign_in')}}">Sign up/Login</a>
+      {%else%}
+      <a class="btn btn-light" href="{{url_for('my_subs')}}">My subscriptions </a>
+      <a class="btn btn-danger" href="{{url_for('logout')}}">Log out</a>
+      {%endif%}
+  </div>
+</nav>
+
+
+{%block content%}{%endblock%}
+
+</body>
+</html>

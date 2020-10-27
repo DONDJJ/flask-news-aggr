@@ -1,0 +1,30 @@
+body
+{
+    word-wrap: break-word
+}
+.left,.center,right
+{
+    background-color:#f7f7f7;
+}
+
+
+.right
+{
+    background-color:yellow;
+}
+
+#yandex_link
+{
+    margin-left:31%;
+}
+
+#meduza_link
+{
+    margin-left:36%;
+}
+
+#top
+{
+     background-color:rgba(0,0,0,0.15);
+
+}

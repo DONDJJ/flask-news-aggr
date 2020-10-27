@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+
+
+{%block content%}
+<div class="container mt-5">
+    <h1>Все ресурсы!</h1>
+
+    {% for press in presses%}
+        <div class="alert alert-dark">
+            <h3>{{press.press_id}}. {{press.name}}</h3>
+            {%if not current_user.is_following(press)%}
+            <p>
+            <a class="btn btn-success" href="{{url_for('follow', user_id = press.press_id)}}">Подписаться!</a>
+            </p>
+            {%elif current_user.is_following(press)%}
+            <a class="btn btn-danger" href="{{url_for('unfollow', user_id = press.press_id)}}">Отписаться</a>
+            {%else%}
+            <h1>SMTH WRONG!</h1>
+            {%endif%}
+        </div>
+    {%endfor%}
+
+
+
+
+
+</div>
+
+{%endblock%}

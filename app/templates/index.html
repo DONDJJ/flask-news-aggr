@@ -1,0 +1,90 @@
+
+{% extends "base.html" %}
+
+{%block title%}{{title}}{%endblock%}
+{%block content%}
+
+
+    <section class="popular">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <div class="left">
+                        <div class="btn btn-outline-primary" id="yandex_link" >
+                        <a href="https://yandex.ru/news/?utm_source=main_stripe_big" >YANDEX NEWS</a></div>
+                        {%for new,href in yandex_news%}
+                         <div>
+                        <a href={{href}} class="btn btn-outline-dark">{{new}}</a>
+                             </div>
+                        {%endfor%}
+                    </div>
+
+                </div>
+                <div class="col-4">
+                    <div class="center">
+                        <div class="btn btn-outline-primary" id="meduza_link" >
+                        <a href="https://meduza.io/" >MEDUZA</a></div>
+                        {%for new,href in meduza_news%}
+                         <div>
+                        <a href={{"https://meduza.io/"+href}} class="btn btn-outline-dark">{{new}}</a>
+                             </div>
+                        {%endfor%}
+                    </div>
+
+                </div>
+
+                <div class="col-4">
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card" style="width: 11rem;">
+                              <div class="card-body">
+                                <h5 class="card-title">Курс доллара</h5>
+                                <div class="card-text">{{dollar}}</div>
+
+                              </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-6">
+                            <div class="card" style="width: 12rem;">
+                              <div class="card-body">
+                                <h5 class="card-title">Курс евро</h5>
+                                <div class="card-text">{{euro}}</div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-6">
+                        <div class="card" style="width: 24rem;">
+                              <div class="card-body">
+                                <h5 class="card-title">Погода</h5>
+                                <div class="card-text">{{temp}} °C</div>
+                                  <div class="card-text">{{weather_desc}}</div>
+                                  <img src={{weather_icon}}>
+                              </div>
+                            </div>
+                            </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+{%endblock%}
+</body>
+</html>
+
+
+
+<!--<section class="popular">
+        <div class="container">
+
+        </div>
+    </section>-->

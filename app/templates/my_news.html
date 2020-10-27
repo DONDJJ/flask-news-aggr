@@ -1,0 +1,25 @@
+
+{% extends "base.html" %}
+
+{%block title%}{{title}}{%endblock%}
+{%block content%}
+<div class="container mt-5">
+    {% for news in all_news%}
+    {%if news.user_id==3 or news.user_id==4%}
+    {%else%}
+        <div class="alert alert-info">
+            <a href="{{news.href}}">
+
+            <h3>{{news.title}}</h3>
+                </a>
+            {%for press in presses%}
+            {%if press.press_id==news.user_id%}
+            <h4>{{press.name}}</h4>
+            {%endif%}
+            {%endfor%}
+        </div>
+    {%endif%}
+    {%endfor%}
+</div>
+
+{%endblock%}

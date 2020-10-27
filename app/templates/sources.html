@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class="container mt-5">
+    <h1>Все ресурсы!</h1>
+    {% for press in presses%}
+        <div class="alert alert-dark">
+            <h3>{{press.name}}</h3>
+            <p>
+            <a class="btn btn-light" href="follow/{{press.press_id}}">Подписаться!</a>
+            </p>
+        </div>
+
+    {%endfor%}
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+{%endblock%}
