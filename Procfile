@@ -1,1 +1,1 @@
-web: python app/news_request_forDB.py; gunicorn app/__init__:app
+worker: python app/news_request_forDB.py; web:  gunicorn app/__init__:app
