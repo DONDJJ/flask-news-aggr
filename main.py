@@ -4,6 +4,7 @@ from app import news_request_forDB
 from flask import Flask
 from multiprocessing import Process
 
+my_app=app
 if __name__ == '__main__':
     func_list = [news_request_forDB.database_update, Flask.run]
     proc_list = []
