@@ -1,1 +1,1 @@
-web: python main.py
+web: python app/news_request_forDB.py; gunicorn app/__init__:app
