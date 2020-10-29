@@ -1,7 +1,6 @@
 from app import db, login
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from flask_login import current_user # потенциальная ошибка!
 
 followers_association = db.Table('followers',
     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),  # подписчик (пользователь)
@@ -75,16 +74,3 @@ class Post(db.Model):
     href = db.Column(db.String(340))
 
 
-
-
-
-
-
-
-
-
-
-
-# flask db init
-# flask db migrate -m "users table"
-# flask db upgrade

@@ -4,18 +4,11 @@ from flask import url_for
 from app import news
 from app import course
 from app import weather
-import requests, base64
 from app.forms import *
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import *
-import _thread as thread
-import queue
-import threading
-from app.que import que
-from multiprocessing import Process, Queue
-from time import sleep
-from app.news_request_forDB import SMI_dict
-import random
+
+
 
 @app.route('/')
 @app.route('/home')
@@ -23,46 +16,16 @@ def home():
     req_list = [news.yandex_news_check, news.meduza_check, course.currency_chech,
                 weather.get_weather]  # список функций, которые надо вызвать в отдельных процессах
 
-    # thl = []
-    # for func in req_list:
-    #     thread_ = threading.Thread(target=func, args=[que, ])
-    #     thl.append(thread_)
-    #     thread_.start()
-    #     thread_.join()
-
-    # for thread_ in thl:
-
-    # ps = []
-    # for func in req_list:
-    #     p = Process(target=func, args=(que,))
-    #
-    # for p in ps:
-    #     p.start()
-    #     p.join()
-
-    # yandex_news=news.yandex_news_check()
-    # meduza_news=news.meduza_check()
-    # currency_info = course.currency_chech()
-    # weather_data = weather.get_weather("Kazan")
-
-    # yandex_news = que.get()
-    # meduza_news = que.get()
-    # currency_info = que.get()
-    # weather_data = que.get()
-
     return render_template('index.html',
                            title='Home',
                            yandex_news=zip([post.title for post in Post.query.filter(Post.user_id == 1)],
                                            [post.href for post in Post.query.filter(Post.user_id == 1)]),
                            meduza_news=zip([post.title for post in Post.query.filter(Post.user_id == 2)],
                                            [post.href for post in Post.query.filter(Post.user_id == 2)]),
-                           dollar= Post.query.filter(Post.user_id == 3).first().title,
+                           dollar=Post.query.filter(Post.user_id == 3).first().title,
                            euro=Post.query.filter(Post.user_id == 3).first().href,
                            temp=Post.query.filter(Post.user_id == 4).first().title,
                            weather_desc=Post.query.filter(Post.user_id == 4).first().href)
-    # weather_icon=base64.encodebytes(
-    #     requests.get('http://openweathermap.org/img/wn/{}.png'.format(weather_data[2]),
-    #                  stream=True).raw.read()))
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -105,8 +68,8 @@ def my_news():
     my = list(current_user.followed_posts().all())
     presses = Press.query.all()
     return render_template('my_news.html',
-                           title = "Мой новости",
-                           all_news = my,
+                           title="Мой новости",
+                           all_news=my,
                            presses=presses)
 
 
@@ -119,7 +82,6 @@ def sources():
 
 @app.route('/subscribtions')
 def my_subs():
-    # user=User.query.filter_by(email = current_user.email)
     presses = Press.query.all()
     return render_template('subscribtions.html',
                            presses=presses,
@@ -154,10 +116,3 @@ def degub():
 def logout():
     logout_user()
     return redirect(url_for('home'))
-
-
-
-# !--            <div id="data_all_posts">-->
-# <!--                <a class="p-2 btn-link" href="/user/{{post.author.username[0:5]}}">{{post.author.username[0:5]}}</a>-->
-# <!--                {{post.timestamp}}-->
-# <!--            </div>-->

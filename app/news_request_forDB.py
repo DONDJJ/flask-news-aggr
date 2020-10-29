@@ -4,16 +4,12 @@ from app.course import *
 from app.weather import *
 from time import sleep
 from app.models import *
-SMI_dict = {
-    1:'Яндекс.Новости',
-    2:'Meduza'
-}
 
 def database_update():
     func_list = [yandex_news_check, meduza_check, currency_chech, get_weather, ria_check, lenta_check,
                  sport_express_check_football,sport_express_check_hockey, sport_express_check_autosport]
-    while True:
 
+    while True:
         for i in range(1, len(func_list)+1):
             data = func_list[i-1]()
             print(type(data[0]) is list or type(data[0]) is tuple)
